@@ -9,8 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>01-jpa-hibernate</artifactId>
+    <artifactId>02-springdata-jpa</artifactId>
     <dependencies>
+        <!--springdata jpa-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
         <!-- junit4 -->
         <dependency>
             <groupId>junit</groupId>
@@ -25,18 +31,39 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.4.32.Final</version>
         </dependency>
-        <!--openjpa-->
-        <dependency>
-            <groupId>org.apache.openjpa</groupId>
-            <artifactId>openjpa-all</artifactId>
-            <version>3.2.0</version>
-        </dependency>
         <!-- Mysql and MoriaDB-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.22</version>
         </dependency>
-    </dependencies>
 
+        <!--连接池-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+        <!--spring-tests-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.3.10</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
