@@ -13,7 +13,6 @@ import java.util.List;
 
 @ContextConfiguration(classes = SpringDataJPAConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-
 public class jpqlTest {
     @Autowired
     CustomerRepository repository;
