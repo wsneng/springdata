@@ -3,6 +3,7 @@ package com.sn;
 import com.sn.config.SpringDataJPAConfig;
 import com.sn.pojo.Customer;
 import com.sn.repositories.CustomerMethodNameReposity;
+import com.sn.repositories.CustomerQueryDSLRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

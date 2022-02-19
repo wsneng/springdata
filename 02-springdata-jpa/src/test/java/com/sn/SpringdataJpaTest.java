@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @ContextConfiguration(classes = SpringDataJPAConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class SpringdataJpaTest {
+public class  SpringdataJpaTest {
     @Autowired
     CustomerRepository repository;
 
