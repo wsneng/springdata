@@ -1,7 +1,0 @@
-com\sn\config\SpringDataJPAConfig.class
-com\sn\repositories\CustomerQueryDSLRepository.class
-com\sn\repositories\CustomerMethodNameReposity.class
-com\sn\pojo\Customer.class
-com\sn\repositories\CustomerQBEReposity.class
-com\sn\repositories\CustomerRepository.class
-com\sn\pojo\QCustomer.class
