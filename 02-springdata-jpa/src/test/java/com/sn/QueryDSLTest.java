@@ -81,8 +81,6 @@ public class QueryDSLTest {
     /**
      * @Autowired 存在线程安全问题
      * 一个Bean默认单例
-     *
-     *
      */
     @PersistenceContext
     EntityManager em;
@@ -107,9 +105,9 @@ public class QueryDSLTest {
                 .orderBy(customer.custId.desc());
         // 执行查询
         List<Tuple> fetch = tupleJPAQuery.fetch();
+
         //处理返回数据
         for (Tuple tuple : fetch) {
-            System.out.println(tuple.get(customer.custId));
             System.out.println(tuple.get(customer.custName));
         }
     }

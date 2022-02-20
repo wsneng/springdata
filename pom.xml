@@ -11,6 +11,7 @@
     <modules>
         <module>01-jpa-hibernate</module>
         <module>02-springdata-jpa</module>
+        <module>03-spring-jpa</module>
     </modules>
 
     <dependencies>
