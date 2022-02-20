@@ -36,9 +36,9 @@ public class SpringDataJpaPagingAndSortTest {
     }
     @Test
     public void testPagingAndSort(){
-        Sort.TypedSort<Customer> sortType = Sort.sort(Customer.class);
-        Sort sort = sortType.by(Customer::getCustId).ascending();
-        // Sort sort = Sort.by("custId").ascending();
+        // Sort.TypedSort<Customer> sortType = Sort.sort(Customer.class);
+        // Sort sort = sortType.by(Customer::getCustId).ascending();
+        Sort sort = Sort.by("custId").ascending();
         Page<Customer> all = repository.findAll(PageRequest.of(0, 2, sort));
         System.out.println(all.getContent());
         System.out.println(all.getTotalPages());

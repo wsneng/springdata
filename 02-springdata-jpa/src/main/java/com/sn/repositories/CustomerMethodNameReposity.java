@@ -1,13 +1,14 @@
 package com.sn.repositories;
 
 import com.sn.pojo.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CustomerMethodNameReposity extends PagingAndSortingRepository<Customer,Long> {
+public interface CustomerMethodNameReposity extends JpaRepository<Customer,Long> {
 
     List<Customer> findByCustName(String custName);
 
