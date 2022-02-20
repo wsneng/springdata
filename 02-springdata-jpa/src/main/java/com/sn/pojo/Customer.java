@@ -29,6 +29,15 @@ public class Customer {
     @Column(name = "cust_address")
     private String custAddress; //客户地址
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "custId=" + custId +
+                ", custName='" + custName + '\'' +
+                ", custAddress='" + custAddress + '\'' +
+                '}' + '\n';
+    }
+
     public Long getCustId() {
         return custId;
     }
@@ -51,14 +60,5 @@ public class Customer {
 
     public void setCustAddress(String custAddress) {
         this.custAddress = custAddress;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "custId=" + custId +
-                ", custName='" + custName + '\'' +
-                ", custAddress='" + custAddress + '\'' +
-                '}' + '\n';
     }
 }
