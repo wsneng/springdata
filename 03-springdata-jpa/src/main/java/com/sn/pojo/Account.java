@@ -24,9 +24,19 @@ public class Account {
     private String username;
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", CustId=" + customer.getCustId() +
+                ", CustName=" + customer.getCustName() +
+                ", CustAddress=" + customer.getCustAddress() +
+                '}';
+    }
 }

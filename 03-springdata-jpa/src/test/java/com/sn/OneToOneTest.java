@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -43,7 +44,7 @@ public class OneToOneTest {
     @Test
     @Transactional(readOnly = true)
     public void testR02(){
-        Optional<Customer> customer = customerRepository.findById(8L);   // 只查询出客户， session关闭
+        Optional<Customer> customer = customerRepository.findById(2L);   // 只查询出客户， session关闭
         System.out.println("=============");
         System.out.println(customer.get());  // toString
     }
@@ -55,17 +56,20 @@ public class OneToOneTest {
     //修改
     @Test
     public void testU03(){
-        // Customer customer = new Customer();
-        // customer.setCustId(9L);
-        // customer.setCustName("徐庶");
+        Customer customer = new Customer();
+        customer.setCustId(3L);
+        customer.setCustName("徐庶");
         // customer.setAccount(null);
         // customerRepository.save(customer);
-        Optional<Account> byId = accountRepository.findById(3L);
-        Account account = byId.get();
+        List<Account> accounts = accountRepository.findByCustomer(customer);
+        System.out.println(accounts);
+        accountRepository.deleteAll(accounts);
+
+        /* Account account = byId.get();
         Customer customer = new Customer();
         customer.setCustId(10L);
         customer.setCustName("徐庶");
         customer.setAccount(account);
-        customerRepository.save(customer);
+        customerRepository.save(customer);*/
     }
 }

@@ -3,6 +3,7 @@ package com.sn.pojo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity    // 作为hibernate的实体类
 @Table(name = "cst_customer")      //映射的表名
@@ -36,7 +37,27 @@ public class Customer {
          值= 另一方关联属性名
      **/
     @OneToOne(mappedBy = "customer",
-            cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+            cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval=true)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private List<Message> messages;
+
+
+    // 单向多对多
+    @ManyToMany(cascade = CascadeType.ALL)
+    /**
+     * 中间表需要@JoinTable来维护外键
+     * name指定中间表的名称
+     * joinColumns 设置本表的外键名称
+     * inverseJoinColumns 设置关联表的外键名称
+     */
+    @JoinTable(
+            name = "tb_customer_role",
+            joinColumns = {@JoinColumn(name = "c_id")},
+            inverseJoinColumns = {@JoinColumn(name = "r_id")}
+    )
+    private List<Role> roles;
 }
