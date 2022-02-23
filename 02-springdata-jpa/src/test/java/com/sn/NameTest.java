@@ -19,7 +19,7 @@ public class NameTest {
     private CustomerMethodNameReposity customerMethodNameReposity;
 
     @Test
-    public void test1(){
+    public void test1() {
         List<Customer> customers = customerMethodNameReposity.findByCustName("wsn");
         System.out.println(customers);
         Boolean exists = customerMethodNameReposity.existsByCustName("wsn");

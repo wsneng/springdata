@@ -9,6 +9,7 @@ import com.sn.repositories.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,16 +25,15 @@ public class OneToManyTest {
     @Autowired
     CustomerRepository customerRepository;
 
-
     //插入
     @Test
     public void testC01(){
         List<Message> messageList = new ArrayList<>();
-        messageList.add(new Message("你好"));
-        messageList.add(new Message("在吗？"));
+        messageList.add(new Message("你好1"));
+        messageList.add(new Message("在吗1？"));
 
         Customer customer = new Customer();
-        customer.setCustName("诸葛");
+        customer.setCustName("诸葛5");
         customer.setMessages(messageList);
 
         customerRepository.save(customer);
@@ -49,5 +49,14 @@ public class OneToManyTest {
     public void testD01(){
         customerRepository.deleteById(3L);
     }
+    @Test
+    @Transactional
+    @Commit
+    public void testU(){
+        Optional<Customer> customer = customerRepository.findById(10L);
+        customer.get().setCustName("小乔");
+    }
+
+
 
 }

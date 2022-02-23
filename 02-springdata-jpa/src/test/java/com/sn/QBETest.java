@@ -19,12 +19,12 @@ import java.util.List;
 public class QBETest {
     @Autowired
     CustomerQBEReposity customerQBEReposity;
+
     /**
-     *
      * 客户地址动态查询
      */
     @Test
-    public void test1(){
+    public void test1() {
         // 查询条件
         Customer customer = new Customer();
         customer.setCustName("S");
@@ -38,7 +38,7 @@ public class QBETest {
                 .withIgnoreCase();      // 忽略大小写
 
         // 通过Example构建查询条件
-        Example<Customer> example = Example.of(customer,matcher);
+        Example<Customer> example = Example.of(customer, matcher);
         List<Customer> all = (List<Customer>) customerQBEReposity.findAll(example);
         System.out.println(all);
     }

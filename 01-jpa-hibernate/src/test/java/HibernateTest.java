@@ -14,15 +14,16 @@ public class HibernateTest {
     // Session工厂  Session：数据库回话， 代码持久化操作数据库的一个桥梁
 
     private SessionFactory sf;
+
     @Before
-    public void init(){
+    public void init() {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("/hibernate.cfg.xml").build();
 
         sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 
     @Test
-    public void testC(){
+    public void testC() {
         // session进行持久化操作
         Session session = sf.openSession();
         try {
@@ -36,8 +37,9 @@ public class HibernateTest {
         }
 
     }
+
     @Test
-    public void testR(){
+    public void testR() {
         // session进行持久化操作
         Session session = sf.openSession();
         try {
@@ -50,8 +52,9 @@ public class HibernateTest {
             session.close();
         }
     }
+
     @Test
-    public void testR_load(){
+    public void testR_load() {
         // session进行持久化操作
         Session session = sf.openSession();
         try {
@@ -66,7 +69,7 @@ public class HibernateTest {
     }
 
     @Test
-    public void testU(){
+    public void testU() {
         // session进行持久化操作
         Session session = sf.openSession();
         try {
@@ -80,8 +83,9 @@ public class HibernateTest {
             session.close();
         }
     }
+
     @Test
-    public void testD(){
+    public void testD() {
         // session进行持久化操作
         Session session = sf.openSession();
         try {
@@ -95,15 +99,16 @@ public class HibernateTest {
             session.close();
         }
     }
+
     @Test
-    public void testR_HQL(){
+    public void testR_HQL() {
         // session进行持久化操作
         Session session = sf.openSession();
         try {
             Transaction tx = session.beginTransaction();
             String hql = " FROM Customer WHERE custName like :custName";
             List<Customer> resultList = session.createQuery(hql, Customer.class)
-                    .setParameter("custName","w%")
+                    .setParameter("custName", "w%")
                     .getResultList();
             System.out.println(resultList);
             tx.commit();

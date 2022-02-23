@@ -2,11 +2,10 @@ package com.sn.pojo;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity    // 作为hibernate的实体类
+@Table(name = "tb_roles")      //映射的表名
 @Data
 public class Role {
 
@@ -21,6 +20,11 @@ public class Role {
     }
 
     public Role(String rName) {
+        this.rName = rName;
+    }
+
+    public Role(Long id, String rName) {
+        this.id = id;
         this.rName = rName;
     }
 }

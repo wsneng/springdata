@@ -5,6 +5,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 
-public interface CustomerQueryDSLRepository extends PagingAndSortingRepository<Customer,Long>, QuerydslPredicateExecutor<Customer> {
+public interface CustomerQueryDSLRepository extends PagingAndSortingRepository<Customer, Long>, QuerydslPredicateExecutor<Customer> {
 
 }

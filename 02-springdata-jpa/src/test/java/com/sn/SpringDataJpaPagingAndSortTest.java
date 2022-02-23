@@ -21,21 +21,23 @@ public class SpringDataJpaPagingAndSortTest {
     CustomerRepository repository;
 
     @Test
-    public void testPaging(){
+    public void testPaging() {
         Page<Customer> all = repository.findAll(PageRequest.of(0, 2));
         System.out.println(all.getTotalPages());
         System.out.println(all.getTotalElements());
         System.out.println(all.getContent());
     }
+
     @Test
-    public void testSort(){
+    public void testSort() {
         Sort sort = Sort.by("custId").descending();
         Iterable<Customer> all = repository.findAll(sort);
         System.out.println(all);
 
     }
+
     @Test
-    public void testPagingAndSort(){
+    public void testPagingAndSort() {
         // Sort.TypedSort<Customer> sortType = Sort.sort(Customer.class);
         // Sort sort = sortType.by(Customer::getCustId).ascending();
         Sort sort = Sort.by("custId").ascending();

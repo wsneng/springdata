@@ -3,6 +3,8 @@ package com.sn.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -12,10 +14,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Optional;
 
 @Configuration    // 标记当前类为配置类  = xml配置文件
 @EnableJpaRepositories(basePackages = "com.sn.repositories")        //启动jpa jpa:repositories
 @EnableTransactionManagement  //开启事务
+@EnableJpaAuditing
 public class SpringDataJPAConfig {
 
     @Bean
@@ -45,5 +49,15 @@ public class SpringDataJPAConfig {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory);
         return txManager;
+    }
+
+    @Bean
+    public AuditorAware<String> auditorAware() {
+        return new AuditorAware() {
+            @Override
+            public Optional getCurrentAuditor() {
+                return Optional.of("wsn");
+            }
+        };
     }
 }

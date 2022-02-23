@@ -22,7 +22,7 @@ public class SpecificationTest {
     private CustomerSpecificationsRepository repository;
 
     @Test
-    public void test1(){
+    public void test1() {
         List<Customer> customerList = repository.findAll(new Specification<Customer>() {
             @Override
             public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
@@ -41,7 +41,7 @@ public class SpecificationTest {
      * 地址  精确
      */
     @Test
-    public void test2(){
+    public void test2() {
         List<Customer> customerList = repository.findAll(new Specification<Customer>() {
             @Override
             public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
@@ -54,11 +54,11 @@ public class SpecificationTest {
                 Path<String> custAddress = root.get("custAddress");
 
                 Predicate PcustAddr = criteriaBuilder.equal(custAddress, "BEIJING");
-                Predicate PcustId = criteriaBuilder.greaterThan(custId,0L);
+                Predicate PcustId = criteriaBuilder.greaterThan(custId, 0L);
                 CriteriaBuilder.In<String> in = criteriaBuilder.in(custName);
                 in.value("wsn").value("asd");
 
-                Predicate and = criteriaBuilder.and(PcustAddr,PcustId,in);
+                Predicate and = criteriaBuilder.and(PcustAddr, PcustId, in);
                 return and;
             }
         });
@@ -69,7 +69,7 @@ public class SpecificationTest {
      * 动态
      */
     @Test
-    public void test3(){
+    public void test3() {
         Customer params = new Customer();
         params.setCustId(0L);
         params.setCustName("wsn");
@@ -89,15 +89,15 @@ public class SpecificationTest {
 
                 // 2. 通过CriteriaBuilder设置不同类型条件
                 List<Predicate> list = new ArrayList<>();
-                if(!StringUtils.isEmpty(params.getCustAddress())){
+                if (!StringUtils.isEmpty(params.getCustAddress())) {
                     Predicate PcustAddr = criteriaBuilder.equal(custAddress, params.getCustAddress());
                     list.add(PcustAddr);
                 }
-                if (!StringUtils.isEmpty(params.getCustId())){
-                    Predicate PcustId = criteriaBuilder.greaterThan(custId,params.getCustId());
+                if (!StringUtils.isEmpty(params.getCustId())) {
+                    Predicate PcustId = criteriaBuilder.greaterThan(custId, params.getCustId());
                     list.add(PcustId);
                 }
-                if (!StringUtils.isEmpty(params.getCustName())){
+                if (!StringUtils.isEmpty(params.getCustName())) {
 
                     CriteriaBuilder.In<String> in = criteriaBuilder.in(custName);
                     in.value(params.getCustName());
@@ -116,7 +116,7 @@ public class SpecificationTest {
      * 排序
      */
     @Test
-    public void test4(){
+    public void test4() {
         Customer params = new Customer();
         params.setCustId(0L);
         params.setCustName("wsn");
@@ -136,15 +136,15 @@ public class SpecificationTest {
 
                 // 2. 通过CriteriaBuilder设置不同类型条件
                 List<Predicate> list = new ArrayList<>();
-                if(!StringUtils.isEmpty(params.getCustAddress())){
+                if (!StringUtils.isEmpty(params.getCustAddress())) {
                     Predicate PcustAddr = criteriaBuilder.equal(custAddress, params.getCustAddress());
                     list.add(PcustAddr);
                 }
-                if (!StringUtils.isEmpty(params.getCustId())){
-                    Predicate PcustId = criteriaBuilder.greaterThan(custId,params.getCustId());
+                if (!StringUtils.isEmpty(params.getCustId())) {
+                    Predicate PcustId = criteriaBuilder.greaterThan(custId, params.getCustId());
                     list.add(PcustId);
                 }
-                if (!StringUtils.isEmpty(params.getCustName())){
+                if (!StringUtils.isEmpty(params.getCustName())) {
 
                     CriteriaBuilder.In<String> in = criteriaBuilder.in(custName);
                     in.value(params.getCustName());

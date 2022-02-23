@@ -9,15 +9,16 @@ import javax.persistence.Persistence;
 
 public class JpaTest {
     EntityManagerFactory factory;
+
     @Before
-    public void before(){
+    public void before() {
         factory = Persistence.createEntityManagerFactory("hibernateJPA");
         // factory = Persistence.createEntityManagerFactory("openJpa");
     }
 
     @Test
-    public void TestC(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestC() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Customer customer = new Customer();
@@ -27,10 +28,11 @@ public class JpaTest {
 
         tx.commit();
     }
+
     // 延迟查询
     @Test
-    public void TestR_lazy(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestR_lazy() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Customer customer = em.getReference(Customer.class, 1L);
@@ -41,8 +43,8 @@ public class JpaTest {
     }
 
     @Test
-    public void TestR(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestR() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Customer customer = em.find(Customer.class, 1L);
@@ -51,10 +53,11 @@ public class JpaTest {
 
         tx.commit();
     }
+
     // 修改
     @Test
-    public void TestU(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestU() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Customer customer = new Customer();
@@ -72,35 +75,38 @@ public class JpaTest {
         em.merge(customer);
         tx.commit();
     }
+
     @Test
-    public void TestU_jpql(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestU_jpql() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         // String jpql = "UPDATE Customer set  custName = ?1 where custId = 3";
         // em.createQuery(jpql).setParameter(1,"ddl")
         //         .executeUpdate();
         String jpql = "UPDATE Customer set  custName=:name where custId=:id";
-        em.createQuery(jpql).setParameter("name","wsn").setParameter("id",3L)
+        em.createQuery(jpql).setParameter("name", "wsn").setParameter("id", 3L)
                 .executeUpdate();
         tx.commit();
     }
+
     @Test
-    public void TestU_SQL(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestU_SQL() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         String sql = "UPDATE cst_customer set  cust_name =:cname where cust_id =:id";
         em.createNativeQuery(sql)
-                .setParameter("cname","poi")
-                .setParameter("id",3L)
+                .setParameter("cname", "poi")
+                .setParameter("id", 3L)
                 .executeUpdate();
         tx.commit();
     }
+
     @Test
-    public void TestU_Del(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestU_Del() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         /**
@@ -115,25 +121,27 @@ public class JpaTest {
         em.remove(customer);
         tx.commit();
     }
+
     @Test
-    public void TestStatus(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestStatus() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Customer customer = new Customer();   //  临时状态（瞬时状态）  新创建出来的
         customer.setCustId(3L);        //游离状态  与entityManager没有关系
-        em.find(Customer.class,5L);           // 持久化状态
+        em.find(Customer.class, 5L);           // 持久化状态
         em.remove(customer);          // 删除状态（销毁状态）
         tx.commit();
     }
+
     @Test
-    public void TestStatus02(){
-        EntityManager  em = factory.createEntityManager();
+    public void TestStatus02() {
+        EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         Customer customer = em.find(Customer.class, 5L);// 持久化状态  （持久化状态进行修改会同步数据库）
         //把持久化状态当做实实在在的数据库记录  会修改数据库
-        System.out.println("11"+ customer);
+        System.out.println("11" + customer);
         customer.setCustName("we");
         System.out.println(customer);
         Customer customer1 = em.find(Customer.class, 5L);

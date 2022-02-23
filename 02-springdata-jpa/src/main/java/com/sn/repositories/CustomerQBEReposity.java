@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CustomerQBEReposity extends PagingAndSortingRepository<Customer,Long>,
+public interface CustomerQBEReposity extends PagingAndSortingRepository<Customer, Long>,
         QueryByExampleExecutor<Customer> {
 
 }

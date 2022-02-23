@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>03-spring-jpa</artifactId>
+    <artifactId>03-springdata-jpa</artifactId>
 
     <dependencies>
         <!--springdata jpa-->
@@ -47,6 +47,14 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+            <version>5.3.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--spring-aspects-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
             <version>5.3.10</version>
             <scope>test</scope>
         </dependency>

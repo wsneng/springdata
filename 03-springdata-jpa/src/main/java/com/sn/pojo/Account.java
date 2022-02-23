@@ -11,7 +11,7 @@ import javax.persistence.*;
  * 一个客户对一个账户
  */
 @Entity
-@Table(name="tb_account")
+@Table(name = "tb_account")
 @Data
 /*@Getter         //  生成所有属性的get方法
 @Setter        //  生成所有属性的set方法

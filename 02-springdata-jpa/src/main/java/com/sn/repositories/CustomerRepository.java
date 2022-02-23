@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CustomerRepository extends PagingAndSortingRepository<Customer,Long> {
-     // // 自定义根据custName查询  索引
+public interface CustomerRepository extends PagingAndSortingRepository<Customer, Long> {
+    // // 自定义根据custName查询  索引
     // @Query("FROM Customer WHERE custName = ?1")
     // List<Customer> findCustomerByCustName(String custName);
     // 自定义根据custName查询  具名
@@ -22,7 +22,7 @@ public interface CustomerRepository extends PagingAndSortingRepository<Customer,
     @Transactional
     @Modifying
     @Query("UPDATE Customer c SET c.custName=:custName WHERE c.custId=:id")
-    int updateCustomer(@Param("custName") String custName,@Param("id") Long id);
+    int updateCustomer(@Param("custName") String custName, @Param("id") Long id);
 
     @Transactional
     @Modifying
@@ -36,6 +36,6 @@ public interface CustomerRepository extends PagingAndSortingRepository<Customer,
     int insertCustomer(@Param("id") Long id);
 
     // 原生SQL
-    @Query(value = "SELECT * FROM cst_customer where cust_name=:custName",nativeQuery = true)
-    List<Customer>  findBySQL(@Param("custName") String custName);
+    @Query(value = "SELECT * FROM cst_customer where cust_name=:custName", nativeQuery = true)
+    List<Customer> findBySQL(@Param("custName") String custName);
 }

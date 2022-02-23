@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CustomerRepository extends PagingAndSortingRepository<Customer,Long> {
+public interface CustomerRepository extends PagingAndSortingRepository<Customer, Long> {
 
 }

@@ -16,28 +16,33 @@ import java.util.List;
 public class jpqlTest {
     @Autowired
     CustomerRepository repository;
+
     @Test
-    public void testR(){
+    public void testR() {
         List<Customer> customer = repository.findCustomerByCustName("ww");
         System.out.println(customer);
     }
+
     @Test
-    public void testU(){
+    public void testU() {
         int result = repository.updateCustomer("ws", 7L);
         System.out.println(result);
     }
+
     @Test
-    public void testD(){
+    public void testD() {
         int result = repository.deleteCustomer("ws");
         System.out.println(result);
     }
+
     @Test
-    public void testC(){
+    public void testC() {
         int result = repository.insertCustomer(6L);
         System.out.println(result);
     }
+
     @Test
-    public void testC_SQL(){
+    public void testC_SQL() {
         List<Customer> customer = repository.findBySQL("wc");
         System.out.println(customer);
     }

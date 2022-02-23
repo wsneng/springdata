@@ -26,7 +26,7 @@ public class QueryDSLTest {
     private CustomerQueryDSLRepository repository;
 
     @Test
-    public void test1(){
+    public void test1() {
         QCustomer customer = QCustomer.customer;
         BooleanExpression eq = customer.custId.eq(1L);
         System.out.println(repository.findOne(eq));
@@ -37,15 +37,15 @@ public class QueryDSLTest {
      * 查询客户名称范围(in)
      * id > 大于
      * 地址 精确
-     *  等于 EQ : equal .eq
-     *  不等于 NE : not equal .ne
-     *  小于 LT : less than .lt
-     *  大于 GT : greater than .gt
-     *  小于等于 LE : less than or equal .loe
-     *  大于等于 GE : greater than or equal .goe
+     * 等于 EQ : equal .eq
+     * 不等于 NE : not equal .ne
+     * 小于 LT : less than .lt
+     * 大于 GT : greater than .gt
+     * 小于等于 LE : less than or equal .loe
+     * 大于等于 GE : greater than or equal .goe
      */
     @Test
-    public void test2(){
+    public void test2() {
 
         QCustomer customer = QCustomer.customer;
         // 通过id查询
@@ -60,7 +60,7 @@ public class QueryDSLTest {
      * 动态
      */
     @Test
-    public void test3(){
+    public void test3() {
 
         Customer params = new Customer();
         params.setCustId(0L);
@@ -70,7 +70,7 @@ public class QueryDSLTest {
         // 初始条件 类似于1=1 永远都成立
         BooleanExpression expression = customer.isNotNull().or(customer.isNull());
 
-        expression = params.getCustId()>-1 ? expression.and(customer.custId.gt(params.getCustId())) : expression;
+        expression = params.getCustId() > -1 ? expression.and(customer.custId.gt(params.getCustId())) : expression;
 
         expression = !StringUtils.isEmpty(params.getCustName()) ? expression.and(customer.custName.in(params.getCustName().split(","))) : expression;
         expression = !StringUtils.isEmpty(params.getCustAddress()) ? expression.and(customer.custAddress.eq(params.getCustAddress())) : expression;
@@ -84,13 +84,14 @@ public class QueryDSLTest {
      */
     @PersistenceContext
     EntityManager em;
+
     /**
      * 自定义列查询  分组
      * 需要使用原生态方式(Specification)
      * 通过repository进行查询 表和列都是固定的
      */
     @Test
-    public void test4(){
+    public void test4() {
         Customer params = new Customer();
         params.setCustId(0L);
         params.setCustName("wsn,wc");
@@ -111,11 +112,12 @@ public class QueryDSLTest {
             System.out.println(tuple.get(customer.custName));
         }
     }
+
     /**
      * 聚合
      */
     @Test
-    public void test5(){
+    public void test5() {
         Customer params = new Customer();
         params.setCustId(0L);
         params.setCustName("wsn,wc");

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CustomerMethodNameReposity extends JpaRepository<Customer,Long> {
+public interface CustomerMethodNameReposity extends JpaRepository<Customer, Long> {
 
     List<Customer> findByCustName(String custName);
 
