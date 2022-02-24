@@ -5,7 +5,9 @@ import com.sn.springdata.pojo.Customer;
 import com.sn.springdata.repositories.BaseInfoRepository;
 import com.sn.springdata.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,5 +20,10 @@ public class CustomerController {
         return customerService.getAll();
     }
 
+    @PostMapping("/customer/add")
+    public Customer addAll(@RequestParam String baseInfoXml){
+        Customer customer = new Customer();
+        return customerService.addCustomer(customer);
+    }
 
 }

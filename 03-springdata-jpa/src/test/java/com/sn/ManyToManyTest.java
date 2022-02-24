@@ -41,10 +41,10 @@ public class ManyToManyTest {
     @Commit
     public void testC02() {
         List<Role> roles = new ArrayList<>();
-        // roles.add(new Role("超级管理员"));
-        // roles.add(new Role("商品管理员"));
-        roles.add(roleRepository.findById(5L).get());
-        roles.add(roleRepository.findById(6L).get());
+        roles.add(new Role("超级管理员"));
+        roles.add(new Role("商品管理员"));
+        // roles.add(roleRepository.findById(5L).get());
+        // roles.add(roleRepository.findById(6L).get());
 
         Customer customer = new Customer();
         customer.setCustName("周瑜3");

@@ -31,7 +31,7 @@ public class ScSYCController {
         // 解析baseInfoXml申报基本信息
         BaseInfo baseInfo = AnalysisBaseInfoXml(baseInfoXml);
         scSYCService.saveBaseInfo(baseInfo);
-        // 解析attrXml申报基本信息
+        // 解析attrXml申报材料信息
         AnalysisAttrInfo(attrXml);
         return new Result().ok();
     }
