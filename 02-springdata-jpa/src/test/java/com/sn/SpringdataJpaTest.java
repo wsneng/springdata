@@ -28,8 +28,8 @@ public class SpringdataJpaTest {
     @Test
     public void testU() {
         Customer customer = new Customer();
-        customer.setCustId(9L);
-        customer.setCustName("asd");
+        // customer.setCustId(9L);
+        customer.setCustName("asewd");
         repository.save(customer);
     }
 
@@ -37,7 +37,7 @@ public class SpringdataJpaTest {
     public void testD() {
         Customer customer = new Customer();
         customer.setCustId(9L);
-        customer.setCustName("asd");
+        customer.setCustName("asd3");
         repository.delete(customer);
     }
 

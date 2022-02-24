@@ -24,9 +24,6 @@ public class ManyToOneTest {
     @Autowired
     private MessageRepository repository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
     // 多对一 插入
     // 得出：当插入“多”的数据的时候，使用多对一的关联关系式更加合理
     @Test
