@@ -30,10 +30,9 @@ public class ScSYCController {
         }
         // 解析baseInfoXml申报基本信息
         BaseInfo baseInfo = AnalysisBaseInfoXml(baseInfoXml);
-        BaseInfo AfterbaseInfo = scSYCService.saveBaseInfo(baseInfo);
+        scSYCService.saveBaseInfo(baseInfo);
         // 解析attrXml申报基本信息
-        List<AttrInfo> attrInfos = AnalysisAttrInfo(attrXml);
-
+        AnalysisAttrInfo(attrXml);
         return new Result().ok();
     }
     /**
@@ -87,17 +86,17 @@ public class ScSYCController {
                 AttrInfo attrXmlRecord = new AttrInfo();
                 List<Element>  subElemets=child.elements();
                 if(subElemets.size()!=0){
+                    List<FileInfo> fileInfoList = new ArrayList<>();
+                    FileInfo fileInfo = new FileInfo();
                     for(Element subChild : subElemets){
                         List<Element> thrChilds = subChild.elements();
-                        List<FileInfo> fileInfoList = new ArrayList<>();
+                        if(subChild.getName().equals("UNID")){
+                            fileInfo.setUNID(subChild.getText());
+                        }
                         if(thrChilds.size()!= 0){
                             for(Element thrChild : thrChilds){
                                 // System.out.println("节点名称3 = [" + thrChild.getName() + "]"+"节点内容："+thrChild.getText());
                                 List<Element> fourChilds = thrChild.elements();
-                                FileInfo fileInfo = new FileInfo();
-                                if(subChild.getName().equals("UNID")){
-                                    fileInfo.setUNID(subChild.getText());
-                                }
                                 for(Element fourChild : fourChilds){
                                     // System.out.println("节点名称4 = [" + fourChild.getName() + "]"+"节点内容："+fourChild.getText());
                                     setObject(fourChild,fileInfo);
